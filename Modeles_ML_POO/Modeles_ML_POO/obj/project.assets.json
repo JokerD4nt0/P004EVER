@@ -207,6 +207,37 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "NumSharp/0.20.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Memory": "4.5.3",
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/NumSharp.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/NumSharp.Core.dll": {}
+        }
+      },
+      "System.Memory/4.5.3": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/4.5.2": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+        }
       }
     }
   },
@@ -680,31 +711,92 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "NumSharp/0.20.0": {
+      "sha512": "W6Puy2OWg8CHkekh1d8xFrSqmudyfT+Z0Yo2YyQTxSiAexyqGtYwQ0KZjLWdT9x/YcApI8YmGCBA+/1c99pTMQ==",
+      "type": "package",
+      "path": "numsharp/0.20.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "lib/netstandard2.0/NumSharp.Core.dll",
+        "lib/netstandard2.0/NumSharp.Core.pdb",
+        "numsharp.0.20.0.nupkg.sha512",
+        "numsharp.nuspec"
+      ]
+    },
+    "System.Memory/4.5.3": {
+      "sha512": "3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "type": "package",
+      "path": "system.memory/4.5.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netcoreapp2.1/_._",
+        "system.memory.4.5.3.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Runtime.CompilerServices.Unsafe/4.5.2": {
+      "sha512": "wprSFgext8cwqymChhrBLu62LMg/1u92bU+VOwyfBimSPVFXtsNqEWC92Pf9ofzJFlk4IHmJA75EDJn1b2goAQ==",
+      "type": "package",
+      "path": "system.runtime.compilerservices.unsafe/4.5.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
-      "Microsoft.NETCore.App >= 2.1.0"
+      "Microsoft.NETCore.App >= 2.1.0",
+      "NumSharp >= 0.20.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\amm\\.nuget\\packages\\": {},
+    "C:\\Users\\Administrateur.000\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\amm\\Documents\\Formation IA\\Cours\\POO\\JSdeBoige\\POO4EVER\\Modeles_ML_POO\\Modeles_ML_POO\\Modeles_ML_POO.csproj",
+      "projectUniqueName": "E:\\Dev\\AI\\Libs\\P004EVER\\Modeles_ML_POO\\Modeles_ML_POO\\Modeles_ML_POO.csproj",
       "projectName": "Modeles_ML_POO",
-      "projectPath": "C:\\Users\\amm\\Documents\\Formation IA\\Cours\\POO\\JSdeBoige\\POO4EVER\\Modeles_ML_POO\\Modeles_ML_POO\\Modeles_ML_POO.csproj",
-      "packagesPath": "C:\\Users\\amm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\amm\\Documents\\Formation IA\\Cours\\POO\\JSdeBoige\\POO4EVER\\Modeles_ML_POO\\Modeles_ML_POO\\obj\\",
+      "projectPath": "E:\\Dev\\AI\\Libs\\P004EVER\\Modeles_ML_POO\\Modeles_ML_POO\\Modeles_ML_POO.csproj",
+      "packagesPath": "C:\\Users\\Administrateur.000\\.nuget\\packages\\",
+      "outputPath": "E:\\Dev\\AI\\Libs\\P004EVER\\Modeles_ML_POO\\Modeles_ML_POO\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\amm\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Administrateur.000\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -733,6 +825,10 @@
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
+          },
+          "NumSharp": {
+            "target": "Package",
+            "version": "[0.20.0, )"
           }
         },
         "imports": [
