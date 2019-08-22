@@ -24,7 +24,7 @@ namespace Modeles_ML_POO
 
 			var weight = np.array(np.random.rand(x.shape[1] + 1)).reshape(x.shape[1] + 1, 1);
 
-			var progress = LinearRegressionModel.GradientDescent(ref weight, x, y, 5000, 0.1);
+			var progress = LinearRegressionModel.GradientDescent(ref weight, x, y, 500, 0.01);
 
 			Weights = weight;
 		}
@@ -101,10 +101,10 @@ namespace Modeles_ML_POO
 				x = AddOnes(x);
 			}
 			var deriv = new List<double>();
+			var h = RunLinearRegression(x, weight);
+			var erreur = h - y;
 			for (int i = 0; i < weight.shape[0]; i++)
 			{
-				var h = RunLinearRegression(x, weight);
-				var erreur = h - y;
 				var erreurX = x[Slice.All, i] * erreur;
 				var der = np.sum(erreurX) / y.shape[0];
 				deriv.Add(der);
@@ -123,17 +123,31 @@ namespace Modeles_ML_POO
 				x = AddOnes(x);
 			}
 
+			var beta = 0.0002;
+			//var beta = 0;
 			var progress = new List<double>();
 			double coutm1 = 1;
 			for (int i = 0; i < maxIterations; i++)
 			{
+
 				var derived = CostDerivative(weight, x, y);
+
 				var alphaDeriv = alpha * derived;
-				weight = weight - alphaDeriv;
+				var weight2 = weight - alphaDeriv;
+
+				var hessian = CostDerivative(derived, x, y);
+
 				
+				//var alphaHessian = alpha * hessian;
+				var betaDerived2 = beta * hessian * (weight2 - weight);
+				weight = weight - alphaDeriv - betaDerived2;
+
+				//weight = weight - alphaDeriv + alphaHessian ;
+
 				var cout = MSELinearRegression(weight, x, y);
 
 				progress.Add(cout);
+				Console.WriteLine($"Descente index {i}, erreur {cout}");
 
 				alpha = alpha * 0.999;
 				//alpha = Math.Min(alpha, alpha * (1 + (cout - coutm1) / coutm1));
