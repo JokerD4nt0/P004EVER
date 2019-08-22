@@ -11,7 +11,7 @@ namespace Test_Modeles
 		static void Main(string[] args)
 		{
 			//TestMSELinearRegression();
-			TestGradientDescent();
+			TestFit();
 			Console.Read();
 		}
 
@@ -20,13 +20,13 @@ namespace Test_Modeles
 			var lrm = new LinearRegressionModel { Weights = np.array(new double[] { 2, 4, 6, 2, 2 }) };
 			var x = np.array(new double[][] { new double[] { 1, 1, 1, 1 } });
 
-			//Transformation de X depuis une matrice vers une collection de collection d'objets
-			var array = x.ToJaggedArray<double>();
-			var list = array.Cast<double[]>().Select(point => new List<object>(point.Cast<object>())).Cast<ICollection<object>>().ToArray();
+			var list = LinearRegressionModel.MatrixToDataSet(x);
 
 			var resultat = lrm.Predict(list);
 			Console.WriteLine(resultat.ToString());
 		}
+
+		
 
 		private static void TestMSELinearRegression()
 		{
@@ -65,7 +65,24 @@ namespace Test_Modeles
 
 		}
 
+		private static void TestFit()
+		{
+			var lrm = new LinearRegressionModel { Weights = np.array(new double[] { 2, 4, 6, 2, 2 }) };
+			var x = np.array(new double[,] { { 1, 1, 1, 1 }, { 2, 5, 2, 2 }, { 2, 3, 2, 2 }, { 5, 2, 2, 2 }, { 2, 2, 3, 2 }, { 7, 2, 2, 2 }, { 2, 6, 2, 2 }, { 2, 4, 2, 2 }, { 2, 3, 3, 2 }, { 2, 2, 2, 8 } });
 
+			var list = LinearRegressionModel.MatrixToDataSet(x);
+
+			var yList = lrm.Predict(list);
+			var y = np.array(yList.Cast<double>().ToArray());
+			Console.WriteLine($"Weights {lrm.Weights.ToString()}");
+			Console.WriteLine($"X {x.ToString()}");
+			Console.WriteLine($"Y { y.ToString()}");
+
+			lrm.Fit(list, yList);
+
+			Console.WriteLine($"Weights after fit {lrm.Weights.ToString()}");
+
+		}
 
 
 
