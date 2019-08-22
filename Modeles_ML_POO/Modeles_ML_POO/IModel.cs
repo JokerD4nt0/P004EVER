@@ -8,7 +8,7 @@ namespace Modeles_ML_POO
 
 	    void Fit(ICollection<ICollection<object>> featuresDataset, ICollection<object> labels);
 
-	     object Predict(ICollection<ICollection<object>> dataPoints);
+	    ICollection<object> Predict(ICollection<ICollection<object>> dataPoints);
 
 	}
 }
