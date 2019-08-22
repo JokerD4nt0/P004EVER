@@ -43,7 +43,7 @@ namespace Modeles_ML_POO
 			return toReturn;
 		}
 
-		public NDArray RunLinearRegression(NDArray x, NDArray weight)
+		public static NDArray RunLinearRegression(NDArray x, NDArray weight)
 		{
 			//On teste s'il y a un biais et donc une coordonnée constante à 1 à rajouter à la fin de x
 			if (weight.shape[0] == x.shape[1]+1)
@@ -62,7 +62,7 @@ namespace Modeles_ML_POO
 			return x;
 		}
 
-		public double MSELinearRegression(NDArray weight, NDArray x, NDArray y)
+		public static double MSELinearRegression(NDArray weight, NDArray x, NDArray y)
 		{
 			var h = RunLinearRegression(x, weight);
 			var erreur = h - y;
@@ -70,7 +70,7 @@ namespace Modeles_ML_POO
 			return mse.GetDouble();
 		}
 
-		public NDArray CostDerivative(NDArray weight, NDArray x, NDArray y)
+		public static NDArray CostDerivative(NDArray weight, NDArray x, NDArray y)
 		{
 			if (weight.shape[0] == x.shape[1] + 1)
 			{
@@ -92,5 +92,32 @@ namespace Modeles_ML_POO
 
 		}
 
+		public static IEnumerable<double> GradientDescent(ref NDArray weight, NDArray x, NDArray y, int maxIterations, double alpha)
+		{
+			if (weight.shape[0] == x.shape[1] + 1)
+			{
+				x = AddOnes(x);
+			}
+
+			var progress = new List<double>();
+			double coutm1 = 1;
+			for (int i = 0; i < maxIterations; i++)
+			{
+				var derived = CostDerivative(weight, x, y);
+				var alphaDeriv = alpha * derived;
+				weight = weight - alphaDeriv;
+				
+				var cout = MSELinearRegression(weight, x, y);
+
+				progress.Add(cout);
+				
+				//alpha = Math.Max(alpha*0.999, alpha * cout);
+				alpha = alpha * (1 + cout - coutm1);
+
+				coutm1 = cout;
+			}
+
+			return progress;
+		}
 	}
 }
