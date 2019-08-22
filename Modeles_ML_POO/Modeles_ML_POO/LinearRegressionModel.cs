@@ -43,20 +43,54 @@ namespace Modeles_ML_POO
 			return toReturn;
 		}
 
-		private NDArray RunLinearRegression(NDArray x, NDArray weight)
+		public NDArray RunLinearRegression(NDArray x, NDArray weight)
 		{
 			//On teste s'il y a un biais et donc une coordonnée constante à 1 à rajouter à la fin de x
 			if (weight.shape[0] == x.shape[1]+1)
 			{
-				var vect_init = np.ones((x.shape[0]), 1);
-				x = np.concatenate((vect_init, x), 1);
+				x = AddOnes(x);
 			}
 
-			var toReturn = np.matmul(x, weight);
+			var toReturn = np.matmul(x, weight).flatten();
 			return toReturn;
 		}
 
+		private static NDArray AddOnes(NDArray x)
+		{
+			var vect_init = np.ones((x.shape[0]), 1);
+			x = np.concatenate((vect_init, x), 1);
+			return x;
+		}
 
+		public double MSELinearRegression(NDArray weight, NDArray x, NDArray y)
+		{
+			var h = RunLinearRegression(x, weight);
+			var erreur = h - y;
+			var mse = (1.0 / (2*x.shape[0])) * (np.sum(erreur*erreur));
+			return mse.GetDouble();
+		}
+
+		public NDArray CostDerivative(NDArray weight, NDArray x, NDArray y)
+		{
+			if (weight.shape[0] == x.shape[1] + 1)
+			{
+				x = AddOnes(x);
+			}
+			var deriv = new List<double>();
+			for (int i = 0; i < weight.shape[0]; i++)
+			{
+				var h = RunLinearRegression(x, weight);
+				var erreur = h - y;
+				var erreurX = x[Slice.All, i] * erreur;
+				var der = np.sum(erreurX) / y.shape[0];
+				deriv.Add(der);
+			}
+
+			var toReturn = np.array(deriv.ToArray()).reshape(weight.shape[0], 1);
+
+			return toReturn;
+
+		}
 
 	}
 }
