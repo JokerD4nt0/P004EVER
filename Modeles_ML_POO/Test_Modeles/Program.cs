@@ -11,7 +11,7 @@ namespace Test_Modeles
 		static void Main(string[] args)
 		{
 			//TestMSELinearRegression();
-			TestCostDerivative();
+			TestGradientDescent();
 			Console.Read();
 		}
 
@@ -34,8 +34,7 @@ namespace Test_Modeles
 			var weights = np.array(new double[] { 2, 2, 2, 2, 2 }) ;
 			var y = np.array(new double[] { 3, 3});
 
-			var lrm = new LinearRegressionModel();
-			var resultat = lrm.MSELinearRegression(weights, x, y);
+			var resultat = LinearRegressionModel.MSELinearRegression(weights, x, y);
 			Console.WriteLine(resultat.ToString());
 		}
 
@@ -45,12 +44,28 @@ namespace Test_Modeles
 			var weights = np.array(new double[] { 0.93176825, 1.25294411, 1.08222077 ,1.04574184, 1.54479269 });
 			var y = np.array(new double[] { 2, 1 });
 
-			var lrm = new LinearRegressionModel(){Weights = weights};
 			
-			var resultat = lrm.CostDerivative(weights, x, y);
+			var resultat = LinearRegressionModel.CostDerivative(weights, x, y);
 			Console.WriteLine(resultat.ToString());
 			
 		}
+
+		private static void TestGradientDescent()
+		{
+			var x = np.array(new double[,] { { 1.95223362, 0.19171514, 0.00512253, 0.80421507 }, { 2.33011483, 0.07497046, 2.37159478, 0.77167166 } });
+			var y = np.array(new double[] { 2, 1 });
+			var weight = np.array(np.random.rand(x.shape[1]+1)).reshape(x.shape[1] + 1, 1);
+			var progress = LinearRegressionModel.GradientDescent(ref weight, x, y, 500, 0.1);
+			
+			//Console.WriteLine(np.array(progress.ToArray()).ToString());
+			foreach (var d in progress)
+			{
+				Console.WriteLine(d);
+			}
+
+		}
+
+
 
 
 
