@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modeles_ML_POO", "Modeles_ML_POO\Modeles_ML_POO.csproj", "{BB6A5EDC-0C6B-4650-914F-713D13DA0D0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modeles_ML_POO", "Modeles_ML_POO\Modeles_ML_POO.csproj", "{BB6A5EDC-0C6B-4650-914F-713D13DA0D0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_Modeles", "Test_Modeles\Test_Modeles.csproj", "{3372E99D-6803-4329-9BF3-B5B197757EFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BB6A5EDC-0C6B-4650-914F-713D13DA0D0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB6A5EDC-0C6B-4650-914F-713D13DA0D0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB6A5EDC-0C6B-4650-914F-713D13DA0D0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3372E99D-6803-4329-9BF3-B5B197757EFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3372E99D-6803-4329-9BF3-B5B197757EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3372E99D-6803-4329-9BF3-B5B197757EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3372E99D-6803-4329-9BF3-B5B197757EFA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
